@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vuee 示例</title>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model="name" placeholder="你的名字">
+    <hl> 你好，{{ name }}</hl>
+    <h1> {{ book }} </h1>
+    <h1> {{ date }} </h1>
+    <h2> {{ number / 10 }}</h2>
+    <h2> {{ isOK ? '确定' : '取饿消' }}</h2>
+    <h2> {{ text }}</h2>
+    <!-- <h2> {{ text.split }}</h2> -->
+    <span v-html="link"></span>
+    <p v-if="show">显示这段文本</p>
+  </div>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+  <script>
+    var myData = {
+      a: 2
+    }
+    var app = new Vue({
+      el: '#app',
+      data: {
+        name: 33,
+        book: 'vue-项目实战',
+        date: new Date(),
+        // 如果有的时候就是想输出HTML，而不是将数据解析后的纯文本，可以使用v-html， 
+        link: '<a href="#">这是一个连接 </a>',
+        number: 100,
+        isOK: false,
+        text: '123,456',
+        show: true
+      },
+      // created: function () {
+      //   console.log(this.name)
+      // },
+      mounted: function(){
+        console.log("999")
+        var _this = this; // 声明一个变量指向Vue实例this，保证作用域一致
+        this.timer = setInterval(function(){
+          _this.date = new Date();
+        }, 1000);
+      },
+      beforeDestroy: function (){
+        if (this.timer) {
+          clearInterval(this.timer); //在vue实例销毁前， 清除我们的定时器
+        }
+      }
+    
+    })
+    
+    // console.log(app.text.spl)
+    console.log("888")
+  </script>
+</body>
+
+</html>
