@@ -9,8 +9,8 @@
  */
 <template>
   <div>
-    哈哈
-  <CompoentTwo :testName="name"></CompoentTwo>
+    <input type="text" v-model="name">
+    <CompoentTwo :testName="name"></CompoentTwo>
   </div>
 </template>
 
